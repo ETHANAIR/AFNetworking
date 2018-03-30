@@ -152,37 +152,44 @@ NS_ASSUME_NONNULL_BEGIN
  Initializes an `AFHTTPSessionManager` object with the specified base URL.
  通过传入基础URL初始化一个`AFHTTPSessionManager`对象
 
- @param url The base URL for the HTTP client.
+ @param url The base URL for the HTTP client. HTTP客户端的基础URL
 
- @return The newly-initialized HTTP client
+ @return The newly-initialized HTTP client 初始化个新的HTTP客户端
  */
 - (instancetype)initWithBaseURL:(nullable NSURL *)url;
 
 /**
  Initializes an `AFHTTPSessionManager` object with the specified base URL.
+ 通过传入基础URL初始化一个`AFHTTPSessionManager`对象
 
- This is the designated initializer.
+ This is the designated initializer.指定初始化方法
 
- @param url The base URL for the HTTP client.
- @param configuration The configuration used to create the managed session.
+ @param url The base URL for the HTTP client. HTTP客户端的基础URL
+ @param configuration The configuration used to create the managed session. 用来创建托管会话的配置
 
- @return The newly-initialized HTTP client
+ @return The newly-initialized HTTP client 初始化个新的HTTP客户端
  */
 - (instancetype)initWithBaseURL:(nullable NSURL *)url
            sessionConfiguration:(nullable NSURLSessionConfiguration *)configuration NS_DESIGNATED_INITIALIZER;
 
 ///---------------------------
-/// @name Making HTTP Requests
+/// @name Making HTTP Requests 发起 HTTP 请求
 ///---------------------------
 
 /**
  Creates and runs an `NSURLSessionDataTask` with a `GET` request.
+ 创建并运行一个配置为‘GET’请求的‘NSURLSessionDataTask'
 
- @param URLString The URL string used to create the request URL.
- @param parameters The parameters to be encoded according to the client request serializer.
- @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the data task, and the response object created by the client response serializer.
+ @param URLString The URL string used to create the request URL. 字符串URL用于创建请求 字符串URL用于创建请求
+ 
+ @param parameters The parameters to be encoded according to the client request serializer. 这些参数会通过客户端请求序列化器进行编码 这些参数会通过客户端请求序列化器进行编码
+ 
+ @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the data task, and the response object created by the client response serializer. 当一个任务成功完成时将会执行这个闭包对象。这个闭包没有返回值并且返回两个参数: 数据任务，由客户端响应串行器返回的对象。
+ 				当一个任务成功完成时将会执行这个闭包对象。这个闭包没有返回值并且返回两个参数: 数据任务，由客户端响应串行器返回的对象。
+ 
  @param failure A block object to be executed when the task finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a two arguments: the data task and the error describing the network or parsing error that occurred.
-
+				当一个任务失败时将会执行这个闭包对象。或者任务成功，但是当解析返回数据发生错误时。这个闭包没有返回值并且返回两个参数：错误描述或解析时发生的错误。
+ 
  @see -dataTaskWithRequest:completionHandler:
  */
 - (nullable NSURLSessionDataTask *)GET:(NSString *)URLString
@@ -193,12 +200,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Creates and runs an `NSURLSessionDataTask` with a `GET` request.
+ 创建并运行一个配置为‘GET’请求的‘NSURLSessionDataTask'
 
- @param URLString The URL string used to create the request URL.
- @param parameters The parameters to be encoded according to the client request serializer.
+ @param URLString The URL string used to create the request URL. 字符串URL用于创建请求 字符串URL用于创建请求
+ 
+ @param parameters The parameters to be encoded according to the client request serializer. 这些参数会通过客户端请求序列化器进行编码 这些参数会通过客户端请求序列化器进行编码
+
  @param downloadProgress A block object to be executed when the download progress is updated. Note this block is called on the session queue, not the main queue.
- @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the data task, and the response object created by the client response serializer.
+ 						 当下载进度更新时会执行这个闭包对象。 注意这个闭包在会话队列， 不是主队列。
+
+ @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the data task, and the response object created by the client response serializer. 当一个任务成功完成时将会执行这个闭包对象。这个闭包没有返回值并且返回两个参数: 数据任务，由客户端响应串行器返回的对象。
+ 				当一个任务成功完成时将会执行这个闭包对象。这个闭包没有返回值并且返回两个参数: 数据任务，由客户端响应串行器返回的对象。
+
  @param failure A block object to be executed when the task finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a two arguments: the data task and the error describing the network or parsing error that occurred.
+				当一个任务失败时将会执行这个闭包对象。或者任务成功，但是当解析返回数据发生错误时。这个闭包没有返回值并且返回两个参数：错误描述或解析时发生的错误。
 
  @see -dataTaskWithRequest:uploadProgress:downloadProgress:completionHandler:
  */
@@ -210,11 +225,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Creates and runs an `NSURLSessionDataTask` with a `HEAD` request.
+ 创建并运行一个配置为‘HEAD’请求的‘NSURLSessionDataTask'
 
- @param URLString The URL string used to create the request URL.
- @param parameters The parameters to be encoded according to the client request serializer.
+ @param URLString The URL string used to create the request URL. 字符串URL用于创建请求 字符串URL用于创建请求
+
+ @param parameters The parameters to be encoded according to the client request serializer. 这些参数会通过客户端请求序列化器进行编码 这些参数会通过客户端请求序列化器进行编码
+
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes a single arguments: the data task.
+ 				当一个任务成功完成时将会执行这个闭包对象。这个闭包没有返回值并且返回两个参数: 数据任务，由客户端响应串行器返回的对象。
+
  @param failure A block object to be executed when the task finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a two arguments: the data task and the error describing the network or parsing error that occurred.
+				当一个任务失败时将会执行这个闭包对象。或者任务成功，但是当解析返回数据发生错误时。这个闭包没有返回值并且返回两个参数：错误描述或解析时发生的错误。
 
  @see -dataTaskWithRequest:completionHandler:
  */
@@ -225,11 +246,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Creates and runs an `NSURLSessionDataTask` with a `POST` request.
+ 创建并运行一个配置为‘POST’请求的‘NSURLSessionDataTask'
 
- @param URLString The URL string used to create the request URL.
- @param parameters The parameters to be encoded according to the client request serializer.
- @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the data task, and the response object created by the client response serializer.
+ @param URLString The URL string used to create the request URL. 字符串URL用于创建请求
+
+ @param parameters The parameters to be encoded according to the client request serializer. 这些参数会通过客户端请求序列化器进行编码
+
+ @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the data task, and the response object created by the client response serializer. 
+ 				当一个任务成功完成时将会执行这个闭包对象。这个闭包没有返回值并且返回两个参数: 数据任务，由客户端响应串行器返回的对象。
+ 				
  @param failure A block object to be executed when the task finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a two arguments: the data task and the error describing the network or parsing error that occurred.
+				当一个任务失败时将会执行这个闭包对象。或者任务成功，但是当解析返回数据发生错误时。这个闭包没有返回值并且返回两个参数：错误描述或解析时发生的错误。
 
  @see -dataTaskWithRequest:completionHandler:
  */
@@ -240,12 +267,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Creates and runs an `NSURLSessionDataTask` with a `POST` request.
+ 创建并运行一个配置为‘POST’请求的‘NSURLSessionDataTask'
 
- @param URLString The URL string used to create the request URL.
- @param parameters The parameters to be encoded according to the client request serializer.
+ @param URLString The URL string used to create the request URL. 字符串URL用于创建请求
+ 
+ @param parameters The parameters to be encoded according to the client request serializer. 这些参数会通过客户端请求序列化器进行编码
+ 
  @param uploadProgress A block object to be executed when the upload progress is updated. Note this block is called on the session queue, not the main queue.
- @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the data task, and the response object created by the client response serializer.
+ 						当下载进度更新时会执行这个闭包对象。 注意这个闭包在会话队列， 不是主队列。
+
+ @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the data task, and the response object created by the client response serializer. 
+ 				当一个任务成功完成时将会执行这个闭包对象。这个闭包没有返回值并且返回两个参数: 数据任务，由客户端响应串行器返回的对象。 
+
  @param failure A block object to be executed when the task finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a two arguments: the data task and the error describing the network or parsing error that occurred.
+				当一个任务失败时将会执行这个闭包对象。或者任务成功，但是当解析返回数据发生错误时。这个闭包没有返回值并且返回两个参数：错误描述或解析时发生的错误。
 
  @see -dataTaskWithRequest:uploadProgress:downloadProgress:completionHandler:
  */
@@ -257,12 +292,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Creates and runs an `NSURLSessionDataTask` with a multipart `POST` request.
+ 创建并运行一个配置为多部分‘POST’请求的‘NSURLSessionDataTask'
 
- @param URLString The URL string used to create the request URL.
- @param parameters The parameters to be encoded according to the client request serializer.
+ @param URLString The URL string used to create the request URL. 字符串URL用于创建请求
+ 
+ @param parameters The parameters to be encoded according to the client request serializer. 这些参数会通过客户端请求序列化器进行编码
+ 
  @param block A block that takes a single argument and appends data to the HTTP body. The block argument is an object adopting the `AFMultipartFormData` protocol.
- @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the data task, and the response object created by the client response serializer.
+ 			  带有一个参数的闭包对象和HTTP体拼接的数据。这个闭包的参数是一个遵循`AFMultipartFormData`协议的对象
+
+ @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the data task, and the response object created by the client response serializer. 
+ 				当一个任务成功完成时将会执行这个闭包对象。这个闭包没有返回值并且返回两个参数: 数据任务，由客户端响应串行器返回的对象。
+
  @param failure A block object to be executed when the task finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a two arguments: the data task and the error describing the network or parsing error that occurred.
+				当一个任务失败时将会执行这个闭包对象。或者任务成功，但是当解析返回数据发生错误时。这个闭包没有返回值并且返回两个参数：错误描述或解析时发生的错误。
 
  @see -dataTaskWithRequest:completionHandler:
  */
@@ -274,13 +317,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Creates and runs an `NSURLSessionDataTask` with a multipart `POST` request.
+ 创建并运行一个配置为多部分‘POST’请求的‘NSURLSessionDataTask'
 
- @param URLString The URL string used to create the request URL.
- @param parameters The parameters to be encoded according to the client request serializer.
+ @param URLString The URL string used to create the request URL. 字符串URL用于创建请求
+ 
+ @param parameters The parameters to be encoded according to the client request serializer. 这些参数会通过客户端请求序列化器进行编码
+ 
  @param block A block that takes a single argument and appends data to the HTTP body. The block argument is an object adopting the `AFMultipartFormData` protocol.
+ 				带有一个参数的闭包对象和HTTP体拼接的数据。这个闭包的参数是一个遵循`AFMultipartFormData`协议的对象
+
  @param uploadProgress A block object to be executed when the upload progress is updated. Note this block is called on the session queue, not the main queue.
- @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the data task, and the response object created by the client response serializer.
+ 					   当下载进度更新时会执行这个闭包对象。 注意这个闭包在会话队列， 不是主队列。
+
+ @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the data task, and the response object created by the client response serializer. 
+ 				当一个任务成功完成时将会执行这个闭包对象。这个闭包没有返回值并且返回两个参数: 数据任务，由客户端响应串行器返回的对象。
+ 
  @param failure A block object to be executed when the task finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a two arguments: the data task and the error describing the network or parsing error that occurred.
+				当一个任务失败时将会执行这个闭包对象。或者任务成功，但是当解析返回数据发生错误时。这个闭包没有返回值并且返回两个参数：错误描述或解析时发生的错误。
 
  @see -dataTaskWithRequest:uploadProgress:downloadProgress:completionHandler:
  */
@@ -293,12 +346,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Creates and runs an `NSURLSessionDataTask` with a `PUT` request.
+ 创建并运行一个配置为‘PUT’请求的‘NSURLSessionDataTask'
 
- @param URLString The URL string used to create the request URL.
- @param parameters The parameters to be encoded according to the client request serializer.
- @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the data task, and the response object created by the client response serializer.
+ @param URLString The URL string used to create the request URL. 字符串URL用于创建请求
+ 
+ @param parameters The parameters to be encoded according to the client request serializer. 这些参数会通过客户端请求序列化器进行编码
+ 
+ @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the data task, and the response object created by the client response serializer. 
+ 				当一个任务成功完成时将会执行这个闭包对象。这个闭包没有返回值并且返回两个参数: 数据任务，由客户端响应串行器返回的对象。
+ 
  @param failure A block object to be executed when the task finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a two arguments: the data task and the error describing the network or parsing error that occurred.
-
+				当一个任务失败时将会执行这个闭包对象。或者任务成功，但是当解析返回数据发生错误时。这个闭包没有返回值并且返回两个参数：错误描述或解析时发生的错误。
+ 
  @see -dataTaskWithRequest:completionHandler:
  */
 - (nullable NSURLSessionDataTask *)PUT:(NSString *)URLString
@@ -308,12 +367,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Creates and runs an `NSURLSessionDataTask` with a `PATCH` request.
+ 创建并运行一个配置为‘PATCH’请求的‘NSURLSessionDataTask'
 
- @param URLString The URL string used to create the request URL.
- @param parameters The parameters to be encoded according to the client request serializer.
- @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the data task, and the response object created by the client response serializer.
+ @param URLString The URL string used to create the request URL. 字符串URL用于创建请求
+ 
+ @param parameters The parameters to be encoded according to the client request serializer. 这些参数会通过客户端请求序列化器进行编码
+ 
+ @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the data task, and the response object created by the client response serializer. 
+ 				当一个任务成功完成时将会执行这个闭包对象。这个闭包没有返回值并且返回两个参数: 数据任务，由客户端响应串行器返回的对象。
+ 
  @param failure A block object to be executed when the task finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a two arguments: the data task and the error describing the network or parsing error that occurred.
-
+				当一个任务失败时将会执行这个闭包对象。或者任务成功，但是当解析返回数据发生错误时。这个闭包没有返回值并且返回两个参数：错误描述或解析时发生的错误。
+ 
  @see -dataTaskWithRequest:completionHandler:
  */
 - (nullable NSURLSessionDataTask *)PATCH:(NSString *)URLString
@@ -323,12 +388,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Creates and runs an `NSURLSessionDataTask` with a `DELETE` request.
+ 创建并运行一个配置为‘DELETE’请求的‘NSURLSessionDataTask'
 
- @param URLString The URL string used to create the request URL.
- @param parameters The parameters to be encoded according to the client request serializer.
- @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the data task, and the response object created by the client response serializer.
+ @param URLString The URL string used to create the request URL. 字符串URL用于创建请求
+ 
+ @param parameters The parameters to be encoded according to the client request serializer. 这些参数会通过客户端请求序列化器进行编码
+ 
+ @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the data task, and the response object created by the client response serializer. 
+ 				当一个任务成功完成时将会执行这个闭包对象。这个闭包没有返回值并且返回两个参数: 数据任务，由客户端响应串行器返回的对象。
+ 
  @param failure A block object to be executed when the task finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a two arguments: the data task and the error describing the network or parsing error that occurred.
-
+				当一个任务失败时将会执行这个闭包对象。或者任务成功，但是当解析返回数据发生错误时。这个闭包没有返回值并且返回两个参数：错误描述或解析时发生的错误。
+ 
  @see -dataTaskWithRequest:completionHandler:
  */
 - (nullable NSURLSessionDataTask *)DELETE:(NSString *)URLString
